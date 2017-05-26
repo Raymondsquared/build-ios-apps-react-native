@@ -44,8 +44,50 @@
 
 ## To run your app on Android:
 
+* Port Number 8088:
+
+    * inside package.json:
+
+        ``` 
+        "start": "node node_modules/react-native/local-cli/cli.js start --port 8088"
+        "android-dev": "adb reverse tcp:8088 tcp:8088 && react-native run-android"
+        ```
+	
+    * DO NOT UPDATE ANDROID & GRADLE
+
+    * create Android 6.0 Marsmallow API 23 from Android Virtual Device
+
+    * go to MainActivity.java
+
+        * 
+        ```
+        import android.content.SharedPreferences;
+        import android.os.Bundle;
+        import android.preference.PreferenceManager;
+
+        @Override
+        protected void onCreate(Bundle state){
+            super.onCreate(state);
+
+            SharedPreferences preferences =
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            preferences.edit().putString("debug_http_host", "localhost:8088").apply();
+        }
+        ```
+
+    * Run Android Virtual Device
+
+    * Run Package server :
+    ``` yarn start ```   
+
 * cd /Users/rraymond/development/build-ios-apps-react-native/GitHubBrowser
 
 * Have an Android emulator running (quickest way to get started), or a device connected
 
-* react-native run-android
+* don run this for different port number:
+    * react-native run-android 
+
+* Run android dev :
+``` yarn android-dev ```   
+
+* or run it from Android Studio

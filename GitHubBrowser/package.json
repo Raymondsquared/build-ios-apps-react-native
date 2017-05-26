@@ -5,6 +5,7 @@
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start --port 8088",
 		"test": "jest",
+		"android-dev": "adb reverse tcp:8088 tcp:8088 && react-native run-android"
 	},
 	"dependencies": {
 		"react": "16.0.0-alpha.6",

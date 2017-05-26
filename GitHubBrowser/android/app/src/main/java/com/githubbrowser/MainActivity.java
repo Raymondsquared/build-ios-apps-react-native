@@ -1,6 +1,9 @@
 package com.githubbrowser;
 
 import com.facebook.react.ReactActivity;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
 
 public class MainActivity extends ReactActivity {
 
@@ -11,5 +14,14 @@ public class MainActivity extends ReactActivity {
     @Override
     protected String getMainComponentName() {
         return "GitHubBrowser";
+    }
+
+    @Override
+    protected void onCreate(Bundle state){
+        super.onCreate(state);
+
+        SharedPreferences preferences =
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        preferences.edit().putString("debug_http_host", "localhost:8088").apply();
     }
 }
